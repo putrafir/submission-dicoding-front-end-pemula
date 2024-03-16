@@ -4,7 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Submission Front-End</title>
-    <link rel="stylesheet" href="./css/output.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              poppins: ["Poppins"],
+            },
+          },
+        },
+      };
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,26 +27,42 @@
   </head>
   <body class="font-poppins">
     <main>
-      <section class="bg-[#EDF1FC] h-full w-full absolute">
+      <div class="bg-[#EDF1FC] h-full w-full absolute">
         <div
-          class="w-full h-[40%] absolute bg-[url('../img/bg.jpg')] bg-cover bg-center"
+          class="w-full h-[40%] absolute bg-[url('./img/bg.jpg')] bg-cover bg-center"
         >
           <div class="w-full h-full bg-slate-600 bg-opacity-50">
-            <div class="w-full justify-center flex p-4">
-              <h1 class="text-white text-3xl font-bold">BOOSHELF APPS</h1>
-            </div>
+            <header class="w-full justify-center flex p-4">
+              <h1 class="text-white text-3xl font-bold">BOOKSHELF APPS</h1>
+            </header>
 
-            <div class="w-full h-full flex justify-center p-8">
+            <section class="w-full h-full flex justify-center p-8">
               <div class="grid grid-cols-2 gap-2">
-                <div class="max-w-sm bg-blue-300 h-10">anjay mabar oi</div>
+                <div class="bg-red-500 max-w-sm h-4">
+                  <h2>Masukkan Buku Baru</h2>
+                  <form id="inputBook">
+                    <div class="input">
+                      <label for="inputBookTitle" class="py-2">Judul</label>
+                      <input id="inputBookTitle" type="text" required />
+                    </div>
+                    <div class="input">
+                      <label for="inputBookTitle">Judul</label>
+                      <input id="inputBookTitle" type="text" required />
+                    </div>
+                    <div class="input">
+                      <label for="inputBookTitle">Judul</label>
+                      <input id="inputBookTitle" type="text" required />
+                    </div>
+                  </form>
+                </div>
                 <div class="max-w-sm bg-blue-300 h-10">1</div>
                 <div class="max-w-sm bg-blue-300 h-10">1</div>
                 <div class="max-w-sm bg-blue-300 h-10">1</div>
               </div>
-            </div>
+            </section>
           </div>
         </div>
-      </section>
+      </div>
     </main>
   </body>
 </html>
