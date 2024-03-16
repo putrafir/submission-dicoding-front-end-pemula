@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submission Front-End</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      .head-container {
+        padding-top: 1rem;
+      }
+      .book-container {
+        background-color: #f1f5f9;
+        border-radius: 0.5rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .inner {
+        display: flex;
+        gap: 14rem;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        position: relative;
+      }
+      .inner h2 {
+        font-weight: 600;
+      }
+
+      .isi-container {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-weight: 100;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+
+      .button-container .sudah-button {
+        background-color: #4ade80;
+        border-radius: 0.375rem /* 6px */;
+        padding-top: 0.25rem /* 4px */;
+        padding-bottom: 0.25rem /* 4px */;
+        padding-left: 0.5rem /* 8px */;
+        padding-right: 0.5rem /* 8px */;
+        margin-right: 2px;
+      }
+      .button-container .hapus-button {
+        background-color: #f87171;
+        border-radius: 0.375rem /* 6px */;
+        padding-top: 0.25rem /* 4px */;
+        padding-bottom: 0.25rem /* 4px */;
+        padding-left: 0.5rem /* 8px */;
+        padding-right: 0.5rem /* 8px */;
+      }
+
+      .button-container {
+        font-size: 0.875rem /* 14px */;
+        line-height: 1.25rem /* 20px */;
+        color: white;
+        right: 4px;
+        position: absolute;
+      }
+    </style>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              poppins: ["Poppins"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-poppins">
+    <main>
+      <div class="h-full w-full absolute">
+        <div
+          class="w-full h-[40%] absolute bg-[url('./img/bg.jpg')] bg-cover bg-center"
+        >
+          <div class="w-full h-full bg-slate-600 bg-opacity-50">
+            <header class="w-full justify-center flex p-4">
+              <h1 class="text-white text-3xl font-bold">BOOKSHELF APPS</h1>
+            </header>
+
+            <section class="w-full h-full flex justify-center p-8">
+              <div class="">
+                <div class="bg-white py-4 px-6 rounded-lg shadow-md">
+                  <h2 class="text-center py-4">Masukkan Buku Baru</h2>
+
+                  <form id="inputBook">
+                    <div class="input">
+                      <label for="inputBookTitle" class="py-2 flex"
+                        >Judul</label
+                      >
+                      <input
+                        id="inputBookTitle"
+                        type="text"
+                        class="border"
+                        required
+                      />
+                    </div>
+                    <div class="input">
+                      <label for="inputBookAuthor" class="py-2 flex"
+                        >Penulis</label
+                      >
+                      <input
+                        id="inputBookAuthor"
+                        type="text"
+                        class="border"
+                        required
+                      />
+                    </div>
+                    <div class="input">
+                      <label for="inputBookYear" class="py-2 flex">Tahun</label>
+                      <input
+                        id="inputBookYear"
+                        type="text"
+                        class="border"
+                        required
+                      />
+                    </div>
+
+                    <div class="input-inline pt-2">
+                      <label for="inputBookIsComplete">Selesai dibaca</label>
+                      <input id="inputBookIsComplete" type="checkbox" />
+                    </div>
+                    <button
+                      id="bookSubmit"
+                      type="submit"
+                      value="Submit"
+                      class="bg-slate-500 py-2 px-4 rounded-lg text-white font-normal mt-4"
+                    >
+                      Masukkan Buku ke rak
+                    </button>
+                  </form>
+                </div>
+                <div class="bg-white py-2 px-4 rounded-lg mt-4">1</div>
+              </div>
+
+              <div class="ml-4">
+                <div class="bg-white rounded-lg py-6 px-4 shadow-md">
+                  <h2>Belum selesai dibaca</h2>
+
+                  <div class="list-item" id="books"></div>
+
+                  <div class="pt-6">
+                    <div
+                      class="book-container bg-slate-100 rounded-lg py-2 px-2"
+                    >
+                      <div class="inner flex gap-56 px-3 py-3">
+                        <div>
+                          <h2 class="font-semibold">Judul</h2>
+                          <div class="isi-container text-sm font-thin py-2">
+                            <h5>Penulis: Ahmad Putra Firdaus</h5>
+                            <h5>Tahun:</h5>
+                          </div>
+                        </div>
+
+                        <div class="action text-sm text-white justify-end">
+                          <button class="bg-green-400 rounded-md py-1 px-2">
+                            Selesai
+                          </button>
+                          <button class="bg-red-400 rounded-md py-1 px-2">
+                            Hapus
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="bg-white rounded-lg py-6 px-4 shadow-md mt-4">
+                  <h2>Sudah selesai dibaca</h2>
+                  <div class="list-item" id="completed-books"></div>
+
+                  <div class="container bg-white pt-6">
+                    <div class="buku bg-slate-100 rounded-lg py-2 px-2">
+                      <div class="flex gap-56 px-3 py-3">
+                        <div>
+                          <h2 class="font-semibold">Judul</h2>
+                          <div class="isi text-sm font-thin py-2">
+                            <h5>Penulis: Ahmad Putra Firdaus</h5>
+                            <h5>Tahun:</h5>
+                          </div>
+                        </div>
+
+                        <div class="action text-sm text-white justify-end">
+                          <button class="bg-green-400 rounded-md py-1 px-2">
+                            Belum
+                          </button>
+                          <button class="bg-red-400 rounded-md py-1 px-2">
+                            Hapus
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div class="mb-4"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
