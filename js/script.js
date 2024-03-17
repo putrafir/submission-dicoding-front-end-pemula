@@ -206,10 +206,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-document.addEventListener(SAVED_EVENT, () => {
-  console.log("data berhasil di simpan");
-});
-
 document.addEventListener(RENDER_EVENT, function () {
   const uncompletedBookList = document.getElementById("books");
   const listCompleted = document.getElementById("completed-books");

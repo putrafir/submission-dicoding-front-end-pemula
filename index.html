@@ -126,7 +126,9 @@
                   </div>
                   <div class="kanan">
                     <div class="bg-white py-4 px-6 rounded-lg shadow-md">
-                      <h2 class="text-center py-4">Masukkan Buku Baru</h2>
+                      <h2 class="text-center py-4 font-semibold text-lg">
+                        Masukkan Buku Baru
+                      </h2>
 
                       <form id="inputBook">
                         <div class="input">
@@ -136,7 +138,7 @@
                           <input
                             id="inputBookTitle"
                             type="text"
-                            class="border"
+                            class="border rounded-md"
                             required
                           />
                         </div>
@@ -147,7 +149,7 @@
                           <input
                             id="inputBookAuthor"
                             type="text"
-                            class="border"
+                            class="border rounded-md"
                             required
                           />
                         </div>
@@ -158,22 +160,16 @@
                           <input
                             id="inputBookYear"
                             type="text"
-                            class="border"
+                            class="border rounded-md"
                             required
                           />
                         </div>
 
-                        <div class="input-inline pt-2">
-                          <label for="inputBookIsComplete"
-                            >Selesai dibaca</label
-                          >
-                          <input id="inputBookIsComplete" type="checkbox" />
-                        </div>
                         <button
                           id="bookSubmit"
                           type="submit"
                           value="Submit"
-                          class="bg-cyan-400 py-2 px-4 rounded-lg text-white font-normal mt-4"
+                          class="bg-cyan-400 py-2 px-5 rounded-lg text-white font-normal mt-4"
                         >
                           Masukkan Buku ke rak
                         </button>
@@ -187,14 +183,14 @@
               <div class="flex justify-center gap-4 mt-5">
                 <div class="w-[50%]">
                   <div class="bg-white rounded-lg py-6 px-4 shadow-md">
-                    <h2>Belum selesai dibaca</h2>
+                    <h2 class="font-semibold text-lg">Belum selesai dibaca</h2>
 
                     <div class="list-item" id="books"></div>
                   </div>
                 </div>
                 <div class="w-[50%]">
                   <div class="bg-white rounded-lg py-6 px-4 shadow-md">
-                    <h2>Sudah selesai dibaca</h2>
+                    <h2 class="text-lg font-semibold">Sudah selesai dibaca</h2>
                     <div class="list-item" id="completed-books"></div>
                   </div>
                 </div>
