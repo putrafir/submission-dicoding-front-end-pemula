@@ -7,19 +7,20 @@ function generated() {
   return +new Date();
 }
 
-function generateBookObject(id, judul, author, tahun, isComplete) {
+function generateBookObject(id, title, author, year, isComplete) {
+  const yearNumber = parseInt(year);
   return {
     id,
-    judul,
+    title,
     author,
-    tahun,
+    year: yearNumber,
     isComplete,
   };
 }
 
 function findBookIndex(bookId) {
   for (const index in books) {
-    if (books[index].id === bookId) {
+    if (books[index].id == bookId) {
       return index;
     }
   }
@@ -64,16 +65,16 @@ function loadDataFromStorage() {
 }
 
 function makeBook(bookObject) {
-  const { id, judul, author, tahun, isComplete } = bookObject;
+  const { id, title, author, year, isComplete } = bookObject;
 
   const teksJudul = document.createElement("h2");
-  teksJudul.innerText = judul;
+  teksJudul.innerText = title;
 
   const isiPenulis = document.createElement("h5");
   isiPenulis.innerText = `Penulis: ${author}`;
 
   const isiTahun = document.createElement("h5");
-  isiTahun.innerText = `Tahun: ${tahun}`;
+  isiTahun.innerText = `Tahun: ${year}`;
 
   const isiContainer = document.createElement("div");
   isiContainer.classList.add("isi-container");
@@ -174,16 +175,16 @@ function kembalikanKeBelum(bookId) {
 }
 
 function addBook() {
-  const teksJudulBook = document.getElementById("inputBookTitle").value;
+  const teksTitleBook = document.getElementById("inputBookTitle").value;
   const teksAuthorBook = document.getElementById("inputBookAuthor").value;
-  const teksTahunBook = document.getElementById("inputBookYear").value;
+  const teksYearBook = document.getElementById("inputBookYear").value;
 
   const generatedId = generated();
   const bookObject = generateBookObject(
     generatedId,
-    teksJudulBook,
+    teksTitleBook,
     teksAuthorBook,
-    teksTahunBook,
+    teksYearBook,
     false
   );
 
