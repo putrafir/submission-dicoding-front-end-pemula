@@ -95,6 +95,16 @@ function makeBook(bookObject) {
   headContainer.classList.add("head-container");
   headContainer.append(container);
 
+  const editButton = document.createElement("button");
+  editButton.innerText = "Edit";
+  editButton.classList.add("edit-button");
+
+  editButton.addEventListener("click", function () {
+    editBook(bookObject);
+  });
+
+  inner.append(editButton);
+
   if (isComplete) {
     const belumButton = document.createElement("button");
     belumButton.innerText = "Belum";
@@ -106,7 +116,7 @@ function makeBook(bookObject) {
 
     const buttonContainer = document.createElement("div");
     buttonContainer.classList.add("button-container");
-    buttonContainer.append(belumButton, hapusButton);
+    buttonContainer.append(editButton, belumButton, hapusButton);
 
     belumButton.addEventListener("click", function () {
       kembalikanKeBelum(id);
@@ -128,7 +138,7 @@ function makeBook(bookObject) {
 
     const buttonContainer = document.createElement("div");
     buttonContainer.classList.add("button-container");
-    buttonContainer.append(sudahButton, hapusButton);
+    buttonContainer.append(editButton, sudahButton, hapusButton);
 
     sudahButton.addEventListener("click", function () {
       keSudahDibaca(id);
@@ -142,6 +152,23 @@ function makeBook(bookObject) {
   }
 
   return headContainer;
+}
+function editBook(bookObject) {
+  const { id, title, author, year, isComplete } = bookObject;
+
+  const titleInput = document.getElementById("inputBookTitle");
+  const authorInput = document.getElementById("inputBookAuthor");
+  const yearInput = document.getElementById("inputBookYear");
+  const isCompleteInput = document.getElementById("inputBookIsComplete");
+
+  titleInput.value = title;
+  authorInput.value = author;
+  yearInput.value = year;
+  isCompleteInput.checked = isComplete;
+
+  // Simpan id buku yang akan diedit di dalam atribut data pada form
+  const bookForm = document.getElementById("inputBook");
+  bookForm.setAttribute("data-edit-id", id);
 }
 
 function keSudahDibaca(bookId) {
@@ -178,29 +205,72 @@ function addBook() {
   const teksTitleBook = document.getElementById("inputBookTitle").value;
   const teksAuthorBook = document.getElementById("inputBookAuthor").value;
   const teksYearBook = document.getElementById("inputBookYear").value;
+  const isComplete = document.getElementById("inputBookIsComplete").checked;
 
-  const generatedId = generated();
-  const bookObject = generateBookObject(
-    generatedId,
-    teksTitleBook,
-    teksAuthorBook,
-    teksYearBook,
-    false
-  );
+  const editId = document
+    .getElementById("inputBook")
+    .getAttribute("data-edit-id");
 
-  books.push(bookObject);
+  if (editId) {
+    const bookIndex = findBookIndex(editId);
+    if (bookIndex !== -1) {
+      books[bookIndex].title = teksTitleBook;
+      books[bookIndex].author = teksAuthorBook;
+      books[bookIndex].year = teksYearBook;
+      books[bookIndex].isComplete = isComplete;
+    }
+  } else {
+    const generatedId = generated();
+    const bookObject = generateBookObject(
+      generatedId,
+      teksTitleBook,
+      teksAuthorBook,
+      teksYearBook,
+      isComplete
+    );
+    books.push(bookObject);
+  }
 
+  resetForm();
   document.dispatchEvent(new Event(RENDER_EVENT));
   saveData();
+}
+function resetForm() {
+  const bookForm = document.getElementById("inputBook");
+  bookForm.removeAttribute("data-edit-id");
+  bookForm.reset();
+}
+function searchBooks() {
+  const searchInput = document.getElementById("searchBook").value.toLowerCase();
+  const uncompletedBookList = document.getElementById("books");
+  const listCompleted = document.getElementById("completed-books");
+
+  uncompletedBookList.innerHTML = "";
+  listCompleted.innerHTML = "";
+
+  for (const bookItem of books) {
+    const bookTitle = bookItem.title.toLowerCase();
+    if (bookTitle.includes(searchInput)) {
+      const bookElement = makeBook(bookItem);
+      if (bookItem.isComplete) {
+        listCompleted.append(bookElement);
+      } else {
+        uncompletedBookList.append(bookElement);
+      }
+    }
+  }
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   const submitForm = document.getElementById("inputBook");
+  const searchInput = document.getElementById("searchBook");
 
   submitForm.addEventListener("submit", function (event) {
     event.preventDefault();
     addBook();
   });
+
+  searchInput.addEventListener("input", searchBooks);
 
   if (isStorageExist()) {
     loadDataFromStorage();

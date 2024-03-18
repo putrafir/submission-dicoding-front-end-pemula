@@ -39,8 +39,20 @@
         padding-bottom: 0.5rem;
       }
 
+      .button-container .edit-button {
+        background-color: #94a3b8;
+        border-radius: 0.375rem;
+
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        margin-right: 2px;
+      }
+
       .button-container .sudah-button {
         background-color: #4ade80;
+        border-radius: 0.375rem;
 
         padding-top: 0.25rem;
         padding-bottom: 0.25rem;
@@ -123,6 +135,15 @@
                       Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                       Ea repellat repellendus maiores modi corrupti qui illo?
                     </p>
+                    <div class="input mt-40 text-slate-700 ml-48">
+                      <label for="searchBook">Cari Judul Buku</label>
+                      <input
+                        type="text"
+                        id="searchBook"
+                        class="border rounded-md py-1 px-2"
+                        placeholder="Masukkan judul buku..."
+                      />
+                    </div>
                   </div>
                   <div class="kanan">
                     <div class="bg-white py-4 px-6 rounded-lg shadow-md">
@@ -163,6 +184,12 @@
                             class="border rounded-md"
                             required
                           />
+                        </div>
+                        <div class="input_inline">
+                          <label for="inputBookIsComplete"
+                            >Selesai dibaca</label
+                          >
+                          <input id="inputBookIsComplete" type="checkbox" />
                         </div>
 
                         <button
